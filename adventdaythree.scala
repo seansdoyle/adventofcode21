@@ -1,24 +1,24 @@
 import scala.io.Source._
 
 object AdventDayTwo{
-    def main( args: Array[String]){
+    def main( args: Array[String]) : Unit = {
         val filename = if (!args.isEmpty) args(0) else "daythree.txt"
-        val lines = fromFile(filename).getLines.toList
-        var numberOfBits = lines(0).length
-        println("Number of bits: " + numberOfBits)
+        val binaryNumbers = fromFile(filename).getLines.toList
+        val numberOfBits = binaryNumbers(0).length
+        
         var gamma = ""
         var epsilon = ""
-
         var mostCommonBit = -1
         var leastCommonBit = -1
 
         for(i <- 0 to numberOfBits - 1){
             var numberOfOnes = 0
             var numberOfZeros = 0
-            for(bin <- lines){
+            for(bin <- binaryNumbers){
                 bin(i) match{
                     case '1' => numberOfOnes += 1
                     case '0' => numberOfZeros += 1
+                    case _ => println("Error")
                 }
             }
             mostCommonBit = mostCommon(numberOfOnes, numberOfZeros)
